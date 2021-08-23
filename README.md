@@ -1,62 +1,48 @@
-# Project Title
+# QR CODE Scanner Demo
 
-Simple overview of use/purpose.
+[Demo Version](https://vpeleven.github.io/QR-code-Scanner-Space-/)
 
-## Description
-
-An in-depth paragraph about your project and overview of use.
+JsQR is designed to be a completely standalone library for scanning QR codes. By design it does not include any platform specific code. This allows it to just as easily scan a frontend webcam stream, a user uploaded image, or be used as part of a backend Node.js process.
 
 ## Getting Started
 
-### Dependencies
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Available on npm. Can be used in a Node.js program or with a module bundler such as Webpack or Browserify.
 
-### Executing program
 
-* How to run the program
-* Step-by-step bullets
+
+
 ```
-code blocks for commands
+npm install jsqr --save
+```
+```
+// ES6 import
+import jsQR from "jsqr";
+
+// CommonJS require
+const jsQR = require("jsqr");
+
+jsQR(...);
 ```
 
-## Help
+## Browser
 
-Any advise for common problems or issues.
+Alternatively for frontend use jsQR.js can be included with a script tag
 ```
-command to run if program contains helper info
+<script src="jsQR.js"></script>
+<script>
+  jsQR(...);
+</script>
 ```
 
-## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+## Return value
+* binaryData - Uint8ClampedArray - The raw bytes of the QR code.
+* data - The string version of the QR code data.
+* chunks - The QR chunks.
+* version - The QR version.
+* location - An object with keys describing key points of the QR code. Each key is a point of the form {x: number, y: number}. Has points for the following locations.
+Corners - topRightCorner/topLeftCorner/bottomRightCorner/bottomLeftCorner;
+Finder patterns - topRightFinderPattern/topLeftFinderPattern/bottomLeftFinderPattern
+May also have a point for the bottomRightAlignmentPattern assuming one exists and can be located.
